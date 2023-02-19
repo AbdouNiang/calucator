@@ -47,7 +47,7 @@ jobs:
             - "H8gMt1E/TZMoK0KLIQ0Uzta2snxQhzNPTJ1N38ryWWE"
       - run:
           name: Deploy docs to gh-pages branch
-          command: gh-pages --dist target/apidocs
+          #command: gh-pages --dist target/apidocs
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
