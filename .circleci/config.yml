@@ -25,7 +25,7 @@ jobs:
       - run:
           name: Test
           command: mvn test
-      - hook/upload
+      - shield/upload
   
   
 workflows:
