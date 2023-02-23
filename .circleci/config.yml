@@ -40,7 +40,7 @@ jobs:
             git config user.name "ci-build"
       - add_ssh_keys:
           fingerprints:
-            - "c9:9f:f8:16:a8:23:8e:b5:94:13:f1:5f:05:ce:bb:8c"
+            - "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"
       - run:
           name: Deploy docs to gh-pages branch
           command: gh-pages --dist target/apidocs
