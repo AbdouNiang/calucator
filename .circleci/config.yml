@@ -1,6 +1,6 @@
 version: 2.1
 orbs: 
-   codecov: codecov/codecov@1.2.
+   codecov: codecov/codecov@1.2.4
 
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
@@ -25,12 +25,34 @@ jobs:
           name: Test
           command: mvn test
       - codecov/upload
+   generate-doc:
+    docker:
+      - image: node:8.10.0
+    steps:
+      - checkout
+      - attach_workspace:
+          at: target
+      - run:
+          name: Install and configure dependencies
+          command: |
+            npm install -g --silent gh-pages@2.0.1
+            git config user.email "ci-build@klukas.net"
+            git config user.name "ci-build"
+      - add_ssh_keys:
+          fingerprints:
+            - "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"
+      - run:
+          name: Deploy docs to gh-pages branch
+          command: gh-pages --dist target/apidocs
   
 workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
+      - generate-doc:
+          requires:
+            - build-and-test
      
    
 
